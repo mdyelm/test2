@@ -1,0 +1,83 @@
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
+let envMapURLs = [ 'x', 'y', 'z' ].reduce((p, d) => p.concat([ 'p', 'n' ].map(n => `${n}${d}.jpg`)), []);
+let reflectionCube = new THREE.CubeTextureLoader()
+		.setCrossOrigin('')
+		.setPath('https://alca.tv/static/codepen/pens/common/SwedishRoyalCastle/')
+		.load(envMapURLs);
+reflectionCube.format = THREE.RGBFormat;
+// reflectionCube.mapping = THREE.CubeRefractionMapping;
+camera.position.z = 5;
+
+let renderer = new THREE.WebGLRenderer({ antialias: true });
+let middle = new THREE.Vector3();
+
+renderer.setClearColor(0x000000);
+renderer.setSize(innerWidth, innerHeight);
+document.body.appendChild(renderer.domElement);
+
+scene.background = reflectionCube;
+
+let light = new THREE.PointLight(0xffffff, 1, 0);
+light.position.set(100, 200, 100);
+scene.add(light);
+
+let geometry = new THREE.BoxGeometry(1, 1, 1);
+let material = new THREE.MeshStandardMaterial({
+		color: 0xFFFFFF,
+		roughness: 0.0,
+		metalness: 1.0,
+		envMap: reflectionCube
+	});
+
+let cubes = [];
+let cubeCount = 100;
+for(let i = 0; i < cubeCount; i++) {
+	let cube = new THREE.Mesh(geometry, material);
+	
+	let t = i / cubeCount * Math.PI * 2;
+	cube.t = t;
+	
+	cube.rotation.set(t, t, t);
+	
+	scene.add(cube);
+	cubes.push(cube);
+}
+
+function draw() {
+	requestAnimationFrame(draw);
+	
+	let time = Date.now() * 0.001;
+	
+	cubes.forEach(cube => {
+		let t = cube.t + time;
+		
+		cube.rotation.x += 0.01;
+		cube.rotation.y -= 0.02;
+		cube.rotation.z -= 0.02;
+		
+		cube.position.set(
+			Math.cos(t) * 2,
+			Math.sin(t) * 2,
+			Math.tan(t) * 2
+		);
+	});
+	
+	camera.position.set(
+			Math.cos(time) * 5,
+			Math.cos(time * 0.25),
+			Math.sin(time) * 5
+		);
+	
+	camera.lookAt(middle);
+	
+	renderer.render(scene, camera);
+}
+
+draw();
+
+window.addEventListener('resize', () => {
+	camera.aspect = innerWidth / innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(innerWidth, innerHeight);
+}, false);

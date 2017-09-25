@@ -1,0 +1,123 @@
+
+.call-member{
+    padding: 20px 10px 20px 10px;
+    background-color:#eb5d59;
+    border-radius: 15px;
+    text-align: center !important;
+    margin-bottom: 50px;
+    box-shadow: 2px 3px 5px #ababab;
+    -moz-box-shadow: 2px 3px 5px #ababab;
+    -webkit-box-shadow: 2px 3px 5px #ababab;
+}
+.call-to-member{
+    padding: 15px 15px 5px 15px;
+    background-color:#50b7c0;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 2px 3px 5px #ababab;
+    -moz-box-shadow: 2px 3px 5px #ababab;
+    -webkit-box-shadow: 2px 3px 5px #ababab;
+}
+.tgc{
+    text-align: center;
+}
+.pd0{
+    padding: 0px;
+}
+.text-input{
+    color: #FFF;
+    font-size: 24px;
+    padding-bottom: 50px;
+
+}
+.text-call{
+    color: #fff;
+    font-size: 55px;
+}
+.text-member{
+    text-align: left !important;
+    color: #fff;
+    font-size: 24px;
+    margin-left: 20px;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+
+}
+.contact{
+    color: #707070;
+    font-size: 78px;
+    margin: 20px 0 30px 0;
+}
+.content-call{
+    padding: 0px 4% 0 4%;
+}
+@media only screen and (max-width: 1200px) {
+    .contact{
+        font-size: 65px;
+    }
+    .text-member{
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .text-input{
+        font-size: 17px;
+    }
+    .text-call{
+        font-size: 45px;
+    }
+    .text-member{
+        font-size: 15px;
+    }
+    .contact{
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 415px) {
+    .contact {
+        font-size: 40px;
+    }
+    .text-call{
+        font-size: 40px;
+    }
+    .text-member{
+        font-size: 12px;
+    }
+    .col-centered{
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .row-centered{
+        padding: 0 4% 0 4%;
+    }
+    .text-call{
+        font-size: 36px;
+    }
+    .contact {
+        font-size: 38px;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .contact {
+        font-size: 33px;
+    }
+    .text-call{
+        font-size: 30px;
+    }
+    .text-member{
+        font-size: 10px;
+    }
+    .col-centered{
+        margin-right: 0;
+    }
+}
